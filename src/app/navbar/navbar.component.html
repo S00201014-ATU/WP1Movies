@@ -1,0 +1,8 @@
+<nav class="navbar">
+  <ul class="navbar-nav">
+    <li [ngClass]="{ 'active': currentRoute === '/movies' }" class="nav-item"><a routerLink="/movies" class="nav-link">Movies</a></li>
+    <li [ngClass]="{ 'active': currentRoute === '/favourites' }" class="nav-item"><a routerLink="/favourites" class="nav-link">Favourites</a></li>
+    <li [ngClass]="{ 'active': currentRoute === '/watchlist' }" class="nav-item"><a routerLink="/watchlist" class="nav-link">Watchlist</a></li>
+    <li [ngClass]="{ 'active': currentRoute === '/reviews' }" class="nav-item"><a routerLink="/reviews" class="nav-link">Reviews</a></li>
+  </ul>
+</nav>

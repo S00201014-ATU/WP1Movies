@@ -1,0 +1,134 @@
+.movie-tiles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.movie-tile {
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.movie-tile:hover {
+  transform: translateY(-5px);
+}
+
+.movie-tile img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.movie-details {
+  padding: 15px;
+}
+
+.movie-details h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+.movie-details p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #cccccc;
+}
+
+.form-container {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="date"],
+.form-container input[type="number"],
+.form-container textarea {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-container button[type="submit"],
+.form-container button[type="button"] {
+  background-color: #ff4500;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.form-container button[type="submit"]:hover,
+.form-container button[type="button"]:hover {
+  background-color: #ff4500;
+}
+
+.watch-button {
+  padding: 8px 16px;
+  background-color: #ff4500;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  justify-self: center;
+}
+
+.watch-button:hover {
+  background-color: #ff5722;
+}
+
+.no-movies-message {
+  font-size: 18px;
+  color: #888888;
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.image-container {
+  margin-bottom: 20px;
+}
+
+.delete-button {
+  padding: 8px 16px;
+  background-color: #ff0000; /* Red color for delete button */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  justify-self: center;
+}
+
+.delete-button:hover {
+  background-color: #cc0000; /* Darker red on hover */
+}

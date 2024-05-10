@@ -1,0 +1,30 @@
+<div>
+  <app-search (searchPerformed)="handleSearch($event)"></app-search>
+  <div *ngIf="movies.length === 0" class="no-results-message">
+    <div class="image-container">
+      <img src="https://t3.ftcdn.net/jpg/01/18/08/90/360_F_118089004_U1nszm4efOnH2OBHsQUxGZlLE9QpUYep.jpg" alt="No results found" width="200">
+    </div>
+    <p>No movies found matching your search query.</p>
+  </div>
+  <div class="genre-buttons" *ngIf="movies.length > 0">
+    <button *ngFor="let genre of genres"
+            [class.active]="genre.name === selectedGenre"
+            (click)="handleSearch('', genre.id)">
+      {{ genre.name }}
+    </button>
+  </div>
+  <div class="movie-tiles-container">
+    <div class="movie-tile" *ngFor="let movie of movies">
+      <a [routerLink]="['/movie', movie.id]">
+        <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }} poster">
+      </a>
+      <div class="movie-details">
+        <h3>{{ movie.title }}</h3>
+        <p>Release Date: {{ movie.release_date | date:'dd/MM/yyyy' }}</p>
+        <button (click)="toggleFavourite(movie.id)">
+          {{ isFavourite(movie.id) ? 'Remove from Favourites' : 'Add to Favourites' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

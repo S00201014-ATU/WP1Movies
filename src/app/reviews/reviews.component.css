@@ -1,0 +1,69 @@
+.container {
+  margin: 20px;
+  align-self: center;
+
+}
+
+.filter-container {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.filter-container label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.filter-dropdown {
+  padding: 8px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.filter-dropdown option[disabled] {
+  color: #999;
+}
+
+.filter-dropdown option[selected] {
+  display: none;
+}
+
+.filter-dropdown:focus {
+  border-color: #555;
+}
+
+.mat-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mat-header-cell,
+.mat-cell {
+  padding: 12px;
+}
+
+.mat-header-row {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.no-reviews-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-size: 18px;
+  color: #888888;
+}
+
+.image-container {
+  margin-bottom: 20px;
+}

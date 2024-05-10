@@ -1,0 +1,39 @@
+<div *ngIf="!noMoviesSelected">
+  <div class="sort-options">
+    <mat-form-field appearance="fill">
+      <mat-label>Sort by:</mat-label>
+      <mat-select [(ngModel)]="selectedSortOption" (selectionChange)="sortFavouriteMovies()">
+        <mat-option value="title-asc">Title (A-Z)</mat-option>
+        <mat-option value="title-desc">Title (Z-A)</mat-option>
+        <mat-option value="release-date-asc">Release Date (Oldest to Newest)</mat-option>
+        <mat-option value="release-date-desc">Release Date (Newest to Oldest)</mat-option>
+        <mat-option value="runtime-asc">Runtime (Shortest to Longest)</mat-option>
+        <mat-option value="runtime-desc">Runtime (Longest to Shortest)</mat-option>
+        <mat-option value="vote-average-asc">Vote Average (Lowest to Highest)</mat-option>
+        <mat-option value="vote-average-desc">Vote Average (Highest to Lowest)</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="movie-tiles-container">
+    <mat-card class="movie-tile" *ngFor="let movie of favouriteMovies">
+      <a [routerLink]="['/movie', movie.id]">
+        <img mat-card-image src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }} poster">
+      </a>
+      <mat-card-content class="movie-details">
+        <h3>{{ movie.title }}</h3>
+        <p>Release Date: {{ movie.release_date | date:'dd/MM/yyyy'}}</p>
+        <button mat-raised-button color="warn" (click)="removeFavourite(movie.id)">Remove from Favourites</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div class="no-favourites-message-container" *ngIf="noMoviesSelected">
+  <div class="no-favourites-message">
+    <div class="image-container">
+      <img src="https://t3.ftcdn.net/jpg/01/18/08/90/360_F_118089004_U1nszm4efOnH2OBHsQUxGZlLE9QpUYep.jpg" alt="No reviews added" width="200">
+    </div>
+    <p>No movies added to favourites. <a routerLink="/movies">Redirect</a> to movies page.</p>
+  </div>
+</div>

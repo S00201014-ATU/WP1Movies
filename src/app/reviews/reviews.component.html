@@ -1,0 +1,36 @@
+<div class="container">
+  <div *ngIf="reviews.length > 0">
+    <div class="filter-container">
+      <select id="filter" [(ngModel)]="selectedFilter" (change)="sortReviews()" class="filter-dropdown">
+        <option value="" disabled selected>Filter Reviews</option>
+        <option *ngFor="let option of filterOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="movieName">
+        <th mat-header-cell *matHeaderCellDef> Movie Name </th>
+        <td mat-cell *matCellDef="let review"> {{ review.movieName }} </td>
+      </ng-container>
+      <ng-container matColumnDef="dateWatched">
+        <th mat-header-cell *matHeaderCellDef> Date Watched </th>
+        <td mat-cell *matCellDef="let review"> {{ review.dateWatched | date: 'dd/MM/yyyy' }} </td>
+      </ng-container>
+      <ng-container matColumnDef="rating">
+        <th mat-header-cell *matHeaderCellDef> Rating </th>
+        <td mat-cell *matCellDef="let review"> {{ review.rating }} </td>
+      </ng-container>
+      <ng-container matColumnDef="comments">
+        <th mat-header-cell *matHeaderCellDef> Comments </th>
+        <td mat-cell *matCellDef="let review"> {{ review.comments }} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div *ngIf="reviews.length === 0" class="no-reviews-message">
+    <div class="image-container">
+      <img src="https://t3.ftcdn.net/jpg/01/18/08/90/360_F_118089004_U1nszm4efOnH2OBHsQUxGZlLE9QpUYep.jpg" alt="No reviews added" width="200">
+    </div>
+    <p>No reviews added yet.</p>
+  </div>
+</div>

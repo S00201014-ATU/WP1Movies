@@ -1,0 +1,53 @@
+<div *ngIf="movie" class="movie-details-container">
+  <div class="backdrop-container">
+    <img src="https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}" alt="{{ movie.title }} backdrop">
+  </div>
+  <h1  class="movie-title">{{ movie.title }}</h1>
+  <div class="accordion">
+    <button class="accordion-btn" (click)="toggleAccordion('overview')">Overview</button>
+    <div class="accordion-content" *ngIf="activeAccordion === 'overview'">
+      <p>{{ movie.overview }}</p>
+    </div>
+    <button class="accordion-btn" (click)="toggleAccordion('releaseDate')">Release Date</button>
+    <div class="accordion-content" *ngIf="activeAccordion === 'releaseDate'">
+      <p>{{ movie.release_date | date:'dd/MM/yyyy' }}</p>
+    </div>
+    <button class="accordion-btn" (click)="toggleAccordion('genres')">Genres</button>
+    <div class="accordion-content" *ngIf="activeAccordion === 'genres'">
+      <p>{{ formatGenres(movie.genres) }}</p>
+    </div>
+    <button class="accordion-btn" (click)="toggleAccordion('runtime')">Runtime</button>
+    <div class="accordion-content" *ngIf="activeAccordion === 'runtime'">
+      <p>{{ movie.runtime }} minutes</p>
+    </div>
+    <button class="accordion-btn" (click)="toggleAccordion('rating')">Rating</button>
+    <div class="accordion-content" *ngIf="activeAccordion === 'rating'">
+      <p>{{ movie.vote_average }}/10</p>
+    </div>
+  </div>
+  <div class="video-container">
+    <ng-container *ngIf="movie.videos && movie.videos.results && movie.videos.results.length > 0; else noVideoMessage">
+      <iframe width="560" height="315" [src]="getTrailerUrl(movie.videos.results) | safeUrl" frameborder="0" allowfullscreen></iframe>
+    </ng-container>
+    <ng-template #noVideoMessage>
+      <p>No trailer available for this movie.</p>
+    </ng-template>
+  </div>
+
+  <button class="add-to-watchlist-button" (click)="addToWatchlist()">Add to Watchlist</button>
+</div>
+
+<div *ngIf="similarMovies.length > 0">
+  <h2 class="similar-title">Similar Movies</h2>
+  <div class="similar-movies-container">
+    <div class="similar-movie" *ngFor="let movie of similarMovies">
+      <a [routerLink]="['/movie', movie.id]" (click)="scrollToTop()">
+        <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }} poster">
+      </a>
+      <div class="similar-movie-details">
+        <p class="title">{{ movie.title }}</p>
+        <p class="similar-release-year">{{ movie.release_date.split('-')[0] }}</p>
+      </div>
+    </div>
+  </div>
+</div>

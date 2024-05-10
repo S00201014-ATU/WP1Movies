@@ -1,0 +1,37 @@
+<div *ngIf="watchlist.length > 0">
+  <div class="movie-tiles-container">
+    <div class="movie-tile" *ngFor="let movie of watchlist">
+      <div *ngIf="!movie.showForm">
+        <a [routerLink]="['/movie', movie.id]">
+          <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }} poster">
+        </a>
+        <div class="movie-details">
+          <h3>{{ movie.title }}</h3>
+          <p>Release Date: {{ movie.release_date | date:'dd/MM/yyyy' }}</p>
+        </div>
+        <button (click)="toggleForm(movie)" class="watch-button">Review</button>
+        <button (click)="removeFromWatchlist(movie)" class="watch-button">Remove</button>
+      </div>
+      <div *ngIf="movie.showForm" class="form-container">
+        <form (ngSubmit)="submitWatchedForm(movie)">
+          <label for="name">Name of Film:</label>
+          <input type="text" id="name" name="name" [(ngModel)]="movie.title" disabled>
+          <label for="dateWatched">Date Watched</label>
+          <input type="date" id="dateWatched" name="dateWatched" [(ngModel)]="movie.dateWatched">
+          <label for="rating">Rating</label>
+          <input type="number" id="rating" name="rating" [(ngModel)]="movie.rating" min="0" max="10">
+          <label for="feedback">Feedback</label>
+          <textarea id="feedback" name="feedback" [(ngModel)]="movie.feedback"></textarea>
+          <button type="submit">Submit</button>
+          <button type="button" (click)="cancelForm()">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="watchlist.length === 0" class="no-movies-message">
+  <div class="image-container">
+    <img src="https://t3.ftcdn.net/jpg/01/18/08/90/360_F_118089004_U1nszm4efOnH2OBHsQUxGZlLE9QpUYep.jpg" alt="No reviews added" width="200">
+  </div>
+  <p>No movies added to watchlist. <a routerLink="/movies">Redirect</a> to movies page.</p>
+</div>

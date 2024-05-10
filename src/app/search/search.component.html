@@ -1,0 +1,4 @@
+<div class="search-container">
+  <input type="text" placeholder="Search movies..." [(ngModel)]="searchQuery" class="search-input" (keydown.enter)="search()">
+  <button (click)="search()" class="search-button">Search</button>
+</div>
